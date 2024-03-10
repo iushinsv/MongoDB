@@ -34,9 +34,5 @@ services:
       - mongodb
     ports:
       - 8081:8081
-    enviroment:
-      - ME_COMFIG_MONGODB_ADMINUSERNAME: rootuser
-      - ME_COMFIG_MONGODB_ADMINPASSWORD: rootpass
-      - ME_COMFIG_MONGODB_URL=mongodb: //rootuser:rootpass@mongodb:27017
-    networks:
+     networks:
       - mongodb_network
