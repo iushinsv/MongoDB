@@ -18,7 +18,7 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=rootuser
       - MONGO_INITDB_ROOT_PASSWORD=rootpass
     networks:
-      - mongodb_network
+      - hw1_mongodb_network
 
   mongo-express:
     image: mongo-express
@@ -33,4 +33,4 @@ services:
       - ME_CONFIG_MONGODB_ADMINPASSWORD=rootpass
       - ME_CONFIG_MONGODB_URL=mongodb://rootuser:rootpass@hw1_mongodb:27017
     networks:
-      - mongodb_network
+      - hw1_mongodb_network
