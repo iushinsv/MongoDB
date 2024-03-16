@@ -1,0 +1,36 @@
+version: "3.8"
+name: hw1_mongodb
+
+networks:
+  hw1_mongodb_network:
+    driver: bridge
+
+services:
+  hw1_mongodb:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - 27017:27017
+    volumes:
+      - /data/db:/data/db
+      - /data/configdb:/data/configdb
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=rootuser
+      - MONGO_INITDB_ROOT_PASSWORD=rootpass
+    networks:
+      - mongodb_network
+
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    restart: always
+    depends_on:
+      - mongodb
+    ports:
+      - 8081:8081
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=rootuser
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=rootpass
+      - ME_CONFIG_MONGODB_URL=mongodb://rootuser:rootpass@hw1_mongodb:27017
+    networks:
+      - mongodb_network
